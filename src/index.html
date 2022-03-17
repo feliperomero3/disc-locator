@@ -13,6 +13,31 @@
 <body>
   <div class="container">
     <h1>Disc Locator</h1>
+    <!-- Container for filter instances -->
+    <form id="form-filters" action="#">
+      <fieldset>
+        <legend>Filters</legend>
+        <div id="filters">
+        </div>
+        <div class="buttons-wrapper">
+          <input type="button" id="filter-add" value="Add Filter" />
+          <input type="submit" id="filter-apply" value="Apply Filters" />
+        </div>
+      </fieldset>
+    </form>
+    <!-- Container for search results -->
+    <div id="panel-results" class="my-2">
+      <table id="results" class="table">
+        <tr>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Binder</th>
+          <th>Page</th>
+          <th>Slot</th>
+          <th>Viewed</th>
+        </tr>
+      </table>
+    </div>
     <div class="templates">
       <div class="template filter-chooser">
         <input type="button" class="filter-remover" value="X" />
@@ -35,7 +60,33 @@
           </option>
         </select>
       </div>
-      <!-- more templates go here -->
+      <div class="template template-title">
+        <select name="title-condition" title="Choose a condition">
+          <option value="contains">contains</option>
+          <option value="starts-with">starts with</option>
+          <option value="ends-with">ends with</option>
+          <option value="equal">is exactly</option>
+        </select>
+        <input type="text" name="title" />
+      </div>
+      <div class="template template-binder">
+        <input type="text" name="binder-min" class="numeric" />
+        <span>through</span>
+        <input type="text" name="binder-max" class="numeric" />
+      </div>
+      <div class="template template-year">
+        <input type="text" name="year-min" class="date" />
+        <span>through</span>
+        <input type="text" name="year-max" class="date" />
+      </div>
+      <div class="template template-viewed">
+        <label>
+          <input type="radio" name="viewed" value="true" checked="checked" /> Yes
+        </label>
+        <label>
+          <input type="radio" name="viewed" value="false" /> No
+        </label>
+      </div>
     </div>
 
   </div>

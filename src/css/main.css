@@ -1,5 +1,5 @@
 .templates {
-  /* display: none; */
+  display: none;
 }
 
 .filter {
@@ -11,8 +11,7 @@
 }
 
 #results {
-  margin: 1em auto;
-  border-collapse: collapse;
+  width: auto;
 }
 
 #results th,
@@ -21,5 +20,5 @@
 }
 
 #results tr:nth-child(odd) {
-  background-color: #71A9D6;
+  background-color: #93caf7;
 }
