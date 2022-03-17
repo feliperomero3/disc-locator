@@ -7,36 +7,35 @@
   <meta name="author" content="Felipe Romero">
   <title>DVD Discs Locator — jQuery in Action Third Edition</title>
   <link rel="stylesheet" href="lib/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
   <div class="container">
-    <div class="row">
-      <div class="templates">
-        <div class="template filter-chooser">
-          <input type="button" class="filter-remover" value="X" />
-          <!-- <label for="filter">Choose a filter</label> -->
-          <select name="filter" class="filter-type" title="Choose a filter">
-            <option value="" data-template-type="" selected="selected">
-              Choose a filter
-            </option>
-            <option value="title" data-template-type="template-title">
-              DVD Title
-            </option>
-            <option value="binder" data-template-type="template-binder">
-              Binder
-            </option>
-            <option value="year" data-template-type="template-year">
-              Release Date
-            </option>
-            <option value="viewed" data-template-type="template-viewed">
-              Viewed?
-            </option>
-          </select>
-        </div>
-        <!-- more templates go here -->
+    <h1>Disc Locator</h1>
+    <div class="templates">
+      <div class="template filter-chooser">
+        <input type="button" class="filter-remover" value="X" />
+        <!-- <label for="filter">Choose a filter</label> -->
+        <select name="filter" class="filter-type" title="Choose a filter">
+          <option value="" data-template-type="" selected="selected">
+            Choose a filter
+          </option>
+          <option value="title" data-template-type="template-title">
+            DVD Title
+          </option>
+          <option value="binder" data-template-type="template-binder">
+            Binder
+          </option>
+          <option value="year" data-template-type="template-year">
+            Release Date
+          </option>
+          <option value="viewed" data-template-type="template-viewed">
+            Viewed?
+          </option>
+        </select>
       </div>
+      <!-- more templates go here -->
     </div>
 
   </div>
