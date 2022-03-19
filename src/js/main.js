@@ -4,6 +4,7 @@ $(document).ready(function () {
   let $filters = $('#filters');
   let $filterAdd = $('#filter-add');
   let movies;
+
   $.getJSON('movies.json', function (data) {
     movies = data;
     $(document).trigger('moviesLoaded');
@@ -11,38 +12,35 @@ $(document).ready(function () {
 
   $(document).on('moviesLoaded', function () {
     setChangeHandler();
+    removeFilterHandler();
 
-    let templatesAvailable = $('.template', '.templates').not('.filter-chooser').length;
+    $filterAdd.click(function () {
+      let selectedFilter = $filters.find('.template:last .filter-type').val();
 
-    $filterAdd.click(setClickHandler($filters, templatesAvailable)).click();
+      if (selectedFilter === '') {
+        return;
+      }
+
+      let filtersInUse = $filters.children().map(function () {
+        return $(this).children('.template').attr('class').match(/\b(template-.+?)\b/g)[0];
+      }).get();
+
+      let templatesAvailable = $('.template', '.templates').not('.filter-chooser').length;
+
+      if (filtersInUse.length === templatesAvailable) {
+        return;
+      }
+
+      let $filterChooser = $('div.template.filter-chooser').clone().removeClass('filter-chooser').addClass('filter');
+
+      $filterChooser.find('option[data-template-type]').filter(function () {
+        return filtersInUse.indexOf($(this).data('template-type')) >= 0;
+      }).remove();
+
+      $filterChooser.appendTo($filters);
+
+    }).click();
   });
-
-  function setClickHandler($filters, templatesAvailable) {
-    let selectedFilter = $filters.find('.template:last .filter-type').val();
-
-    if (selectedFilter === '') {
-      return;
-    }
-
-    let filterInUse = $filters.children().map(function () {
-      let innerObj = $(this);
-      let childrenWithClass = $(this).children('.template');
-      return $(this).children('.template').attr('class').match(/\b(template-.+?)\b/g)[0];
-    }).get();
-
-    if (filterInUse.length === templatesAvailable) {
-      return;
-    }
-
-    let $filterChooser = $('div.template.filter-chooser').clone().removeClass('filter-chooser').addClass('filter');
-
-    $filterChooser.find('option[data-template-type]').filter(function () {
-      return filterInUse.indexOf($(this).data('template-type')) >= 0;
-    }).remove();
-
-    $filterChooser.appendTo($filters);
-
-  }
 
   function setChangeHandler() {
     $('#filters').on('change', '.filter-type', function () {
@@ -53,6 +51,12 @@ $(document).ready(function () {
       $('.qualifier', $filter).remove();
       $('div.template.' + filterType).clone().addClass('qualifier').appendTo($filter);
       $this.find('option[value=""').remove();
+    });
+  }
+
+  function removeFilterHandler() {
+    $('#filters').on('click', '.filter-remover', function () {
+      $(this).closest('.filter').remove();
     });
   }
 });
