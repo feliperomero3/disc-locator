@@ -22,6 +22,10 @@ your browser.
 1. Copy the content of `src` into your webserver's root folder.
 1. Open <http://localhost> in your browser.
 
+## Screen capture
+
+![Screen capture](./screen-capture.png)
+
 ## License
 
 [MIT License](./LICENSE)
